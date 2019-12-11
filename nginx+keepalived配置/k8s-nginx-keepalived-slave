@@ -1,0 +1,34 @@
+! Configuration File for keepalived
+
+global_defs {
+   notification_email {
+	shichao@scajy.cn
+   }
+   notification_email_from shichao@scajy.cn
+   smtp_server shichao@scajy.cn
+   smtp_connect_timeout 30
+   router_id LVS_DEVEL
+}
+
+vrrp_script  check_nginx {
+    script "/scripts/check_nginx.sh"
+}
+
+vrrp_instance VI_1 {
+    state BACKUP
+    interface eth0
+    mcast_src_ip 192.168.200.136
+    virtual_router_id 51
+    priority 99
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        192.168.200.130
+    }
+    track_script {
+          check_nginx
+    }
+}
