@@ -1,0 +1,24 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx_template
+  name: nginx_template
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: nginx_template
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: nginx_template
+    spec:
+      containers:
+      - image: nginx
+        name: nginx_template
+        resources: {}
+status: {}
