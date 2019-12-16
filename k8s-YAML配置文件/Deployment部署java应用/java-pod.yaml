@@ -1,0 +1,21 @@
+apiVersion: apps/v1              
+kind: Deployment
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  replicas: 3
+  selector:                     #标签选择器，管理定义模块中标签选择器名称
+    matchLabels:
+      app: web
+  template:                     #模板里app，定义服务名称，定义的必须要和selector定义的服务名称对应上
+    metadata:
+      labels:
+        app: web
+    spec:                      #部署镜像模块
+      containers:
+      - name: web
+        image: 192.168.200.137/k8s/java
+        ports:
+        - containerPort: 8080

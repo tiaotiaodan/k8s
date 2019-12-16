@@ -1,0 +1,21 @@
+apiVersion: apps/v1              
+kind: Deployment
+metadata:
+  name: k8s-java
+  labels:
+    app: k8s-java
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-java
+  template:
+    metadata:
+      labels:
+        app: k8s-java
+    spec:
+      containers:
+      - name: k8s-java
+        image: 192.168.200.137/k8s/java
+        ports:
+        - containerPort: 80
